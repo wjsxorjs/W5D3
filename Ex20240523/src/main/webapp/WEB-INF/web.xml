@@ -19,4 +19,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Ex1_Service</display-name>
+    <servlet-name>Ex1_Service</servlet-name>
+    <servlet-class>am.Ex1_Service</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ex1_Service</servlet-name>
+    <url-pattern>/Ex1_Service</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Ex1_Logout</display-name>
+    <servlet-name>Ex1_Logout</servlet-name>
+    <servlet-class>am.Ex1_Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ex1_Logout</servlet-name>
+    <url-pattern>/Ex1_Logout</url-pattern>
+  </servlet-mapping>
 </web-app>

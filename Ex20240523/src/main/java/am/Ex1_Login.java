@@ -5,12 +5,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import am.vo.MemberVO;
 
 /**
  * Servlet implementation class Ex1_Login
@@ -43,7 +51,28 @@ public class Ex1_Login extends HttpServlet {
 		l_map.put("mpw",mpw);
 		
 		Reader r = Resources.getResourceAsReader("am/config/config.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(r);
+		r.close();
 		
+		SqlSession ss = factory.openSession();
+		MemberVO mvo = ss.selectOne("member.login",l_map);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(mvo != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("mvo", mvo); // (key, value)
+			out.println("<h2>로그인 성공</h2>");
+			out.println("<button type='button'");
+			out.println("onclick='javascript:location.href=\"Ex1_Service\"'>");
+			out.println("홈으로</button>");
+		} else {
+			out.println("<h2>로그인 실패</h2>");
+			out.println("<button type='button'");
+			out.println("onclick='javascript:location.href=\"Ex1_Service\"'>");
+			out.println("홈으로</button>");
+		}
 		
 		
 		
