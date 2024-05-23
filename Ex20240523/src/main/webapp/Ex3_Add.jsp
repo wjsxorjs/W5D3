@@ -9,6 +9,10 @@
     table caption{
         text-indent: -9999px;
     }
+    #ip{
+        background: rgb(230,230,230);
+        border: none;
+    }
 </style>
 </head>
 <body>
@@ -47,15 +51,26 @@
                             </td>
                             <td>
                                 <input type="text" name="loc" id="loc" />
-                                <input type="text" name="ip" id="ip"
-                                readonly value = <%= request.getRemoteAddr()%> />
+                                <!-- <input type="text" name="ip" id="ip"
+                                readonly value = <%= request.getRemoteAddr()%> /> -->
                                 
                             </td> 
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" onclick="exe()">보내기</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </form>
         </article>
     </div>
+
+    <script>
+        function exe(){
+            document.forms[0].submit();
+        }
+    </script>
 </body>
 </html>
