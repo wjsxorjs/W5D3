@@ -63,10 +63,11 @@ public class Ex1_Login extends HttpServlet {
 		if(mvo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", mvo); // (key, value)
-			out.println("<h2>로그인 성공</h2>");
-			out.println("<button type='button'");
-			out.println("onclick='javascript:location.href=\"Ex1_Service\"'>");
-			out.println("홈으로</button>");
+			response.sendRedirect("Ex1_Service");
+//			out.println("<h2>로그인 성공</h2>");
+//			out.println("<button type='button'");
+//			out.println("onclick='javascript:location.href=\"Ex1_Service\"'>");
+//			out.println("홈으로</button>");
 		} else {
 			out.println("<h2>로그인 실패</h2>");
 			out.println("<button type='button'");
